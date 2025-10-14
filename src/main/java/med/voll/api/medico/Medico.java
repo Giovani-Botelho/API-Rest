@@ -22,6 +22,7 @@ public class Medico {
     private Long id;
     private String nome;
     private String email;
+    private String senha;
     private String telefone;
     private String crm;
 
@@ -33,12 +34,11 @@ public class Medico {
 
     private Boolean ativo;
 
-    public Medico(){}
-
     public Medico(DadosCadastroMedico dados) {
         this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
+        this.senha = dados.senha();
         this.telefone = dados.telefone();
         this.crm = dados.crm();
         this.especialidade = dados.especialidade();
@@ -53,6 +53,8 @@ public class Medico {
         return email;
     }
 
+    public String getSenha() { return senha; }
+
     public String getCrm(){
         return crm;
     }
@@ -65,6 +67,9 @@ public class Medico {
         return id;
     }
 
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     public void atualizarInformacoes(@Valid DadosAtualizacaoMedico dados) {
         if (dados.nome() != null) {

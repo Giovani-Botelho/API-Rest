@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.endereco.Endereco;
+import org.springdoc.core.configuration.oauth2.SpringDocOidcProviderConfiguration;
 
 @Table(name = "pacientes")
 @Entity(name = "Paciente")
@@ -20,6 +21,7 @@ public class Paciente {
     private Long id;
     private String nome;
     private String email;
+    private String senha;
     private String telefone;
     private String cpf;
     private Boolean ativo;
@@ -27,14 +29,13 @@ public class Paciente {
     @Embedded
     private Endereco endereco;
 
-    public Paciente (){}
-
     public Paciente(DadosCadastroPaciente dados){
         this.ativo = true;
         this.nome = dados.nome();
         this.cpf = dados.cpf();
         this.telefone = dados.telefone();
         this.email = dados.email();
+        this.senha = dados.senha();
         this.endereco = new Endereco(dados.endereco());
     }
 
@@ -47,6 +48,8 @@ public class Paciente {
         return email;
     }
 
+    public String getSenha() { return senha; }
+
     public String getCpf() {
         return cpf;
     }
@@ -57,6 +60,10 @@ public class Paciente {
 
     public Long getId(){
         return id;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public void atualizarInformacoes(DadosAtualizacaoPaciente dados) {

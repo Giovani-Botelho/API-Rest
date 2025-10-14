@@ -17,6 +17,9 @@ public record DadosCadastroPaciente(
         String email,
 
         @NotBlank
+        String senha,
+
+        @NotBlank
         String telefone,
 
         @NotBlank
